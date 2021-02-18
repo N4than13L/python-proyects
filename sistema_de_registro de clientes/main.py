@@ -39,7 +39,7 @@ class Database:
                 print("-------------------------\n")
 
         except ValueError:
-            pass  
+            print("Error") 
     def Delete_register(self):
         sql = 'TRUNCATE Clientes'
         try:
@@ -87,8 +87,26 @@ class Database:
         sql = "INSERT INTO Empleados(cedula, nombre, apellido, rango, fecha_de_nacimiento) VALUES('{}', '{}','{}','{}','{}')".format(cedula,nombre,apellido,rango,fecha_de_nacimiento)
         try:
             self.cursor.execute(sql)
+            
         except ValueError:
             pass
+    def Mostrar_Empleados(self):
+        sql = "SELECT Cedula, nombre,apellido,rango,fecha_de_nacimiento FROM Empleados"
+        try:
+            self.cursor.execute(sql)
+            Empleados = self.cursor.fetchall()
+
+            for empleado in Empleados:
+                print("--------------------------")
+                print("cedula:", empleado[0])
+                print("nombre:", empleado[1])
+                print("apellido:", empleado[2])
+                print("rango:", empleado[3])
+                print("fecha_de_nacimiento:", empleado[4])
+                print("-------------------------\n")
+
+        except ValueError:
+            print("Error")
     def close(self):
         self.connection.close()
         print("conexion termida.")
@@ -99,11 +117,11 @@ encargado = str(input("Bienvedido a negocio de pulgas, ¿en que te podemos servi
 
 while True:
 
-    if encargado == "M":
+    if encargado == "mostrar clientes":
         database.select_all_Users()
         encargado = str(input("Bienvedido a negocio de pulgas, ¿en que te podemos servir? \n"))
 
-    elif encargado == "I":
+    elif encargado == "insertar":
         cliente_o_empleado = str(input("desea introducir un nuevo empleado o Cliente: \n"))
         if cliente_o_empleado == "cliente":
 
@@ -128,7 +146,7 @@ while True:
             print("nesecita ayuda")
             encargado = str(input("Bienvedido a negocio de pulgas, ¿en que te podemos servir? \n"))
 
-    elif encargado == "IP":
+    elif encargado == "insertar producto":
         _key = str(input("Introducir la key: "))
         fabricante = str(input("Introducir la marca: "))
         modelo = str(input("Introducir el modelo: "))
@@ -137,8 +155,12 @@ while True:
         database.Insert_Products(_key,fabricante,modelo, precio)
         encargado = str(input("Bienvedido a negocio de pulgas, ¿en que te podemos servir? \n"))
 
-    elif encargado == "P":
+    elif encargado == "mostrar productos":
         database.Mostrar_Productos()
+        encargado = str(input("Bienvedido a negocio de pulgas, ¿en que te podemos servir? \n"))
+
+    elif encargado == "mostrar empleados":
+        database.Mostrar_Empleados()
         encargado = str(input("Bienvedido a negocio de pulgas, ¿en que te podemos servir? \n"))
 
     elif encargado == "exit":
