@@ -10,6 +10,8 @@ class Database:
             db='user'
         )
         
+        #creado la connexion para la base de datos.
+
         self.cursor = self.connection.cursor()
         print("connecion realizada exitosamente")
 
