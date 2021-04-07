@@ -24,13 +24,13 @@ while True:
     if formato == 'a':
         video = YouTube_Downloader().descargar_Audio(video_url)
 
-        video_url = input('indroducir la url del video a descargar: ')
-        formato = input('seleccione el formato para la descarga: \n a) Audio \n b) Video: ')
+video_url = input('indroducir la url del video a descargar: ')
+formato = input('seleccione el formato para la descarga: \n a) Audio \n b) Video: ')
 
     elif formato == 'b':
         audio = YouTube_Downloader().descargar_Videos(video_url)
         
-        video_url = input('indroducir la url del video a descargar: ')
-        formato = input('seleccione el formato para la descarga: \n a) Audio \n b) Video: ')
+video_url = input('indroducir la url del video a descargar: ')
+formato = input('seleccione el formato para la descarga: \n a) Audio \n b) Video: ')
         
     
